@@ -1,4 +1,5 @@
 import logging
+import os
 from typing import Optional
 import chromadb
 from chromadb.config import Settings as ChromaSettings
@@ -11,6 +12,9 @@ from app.models.idea import Idea
 logger = logging.getLogger(__name__)
 settings = get_settings()
 
+def _set_google_api_key():
+    os.environ["GOOGLE_API_KEY"] = settings.GOOGLE_API_KEY
+
 COLLECTION_NAME = "ideaforge_ideas"
 
 
@@ -22,10 +26,8 @@ def _get_chroma_client() -> chromadb.PersistentClient:
 
 
 def _get_embeddings():
-    return GoogleGenerativeAIEmbeddings(
-        model="models/gemini-embedding-001",
-        google_api_key=settings.GOOGLE_API_KEY,
-    )
+    _set_google_api_key()
+    return GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
 
 
 def _idea_to_document(idea: Idea) -> str:
@@ -107,11 +109,8 @@ def rag_search(query: str, n_results: int = 5) -> dict:
         for m in metas
     ]
 
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.0-flash",
-        google_api_key=settings.GOOGLE_API_KEY,
-        temperature=0.3,
-    )
+    _set_google_api_key()
+    llm = ChatGoogleGenerativeAI(model=settings.GEMINI_MODEL, temperature=0.3)
 
     messages = [
         SystemMessage(

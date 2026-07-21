@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, ForeignKey, DateTime, Text, JSON
+from sqlalchemy import Column, Integer, ForeignKey, DateTime, Text
+from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.database import Base
@@ -11,7 +12,7 @@ class SearchHistory(Base):
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     query = Column(Text, nullable=False)
     answer = Column(Text, nullable=False)
-    sources = Column(JSON, nullable=False, default=list)
+    sources = Column(JSONB, nullable=False, default=list)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     user = relationship("User", back_populates="search_history")

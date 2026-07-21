@@ -72,4 +72,9 @@ def list_users(db: Session = Depends(get_db), _: User = Depends(require_admin)):
 
 @router.get("/contacts")
 def list_contacts(db: Session = Depends(get_db), _: User = Depends(require_admin)):
-    return db.query(ContactSubmission).order_by(ContactSubmission.created_at.desc()).all()
+    contacts = db.query(ContactSubmission).order_by(ContactSubmission.created_at.desc()).all()
+    return [
+        {"id": c.id, "name": c.name, "email": c.email,
+         "message": c.message, "created_at": c.created_at}
+        for c in contacts
+    ]

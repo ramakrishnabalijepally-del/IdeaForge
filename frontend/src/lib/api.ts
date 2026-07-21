@@ -16,12 +16,18 @@ function processQueue(error: unknown) {
   failedQueue = [];
 }
 
+// Endpoints that must never trigger the refresh-token retry loop
+const AUTH_ENDPOINTS = ["/auth/login", "/auth/register", "/auth/refresh"];
+
 api.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
     const original = error.config as typeof error.config & { _retry?: boolean };
+    const url = original?.url ?? "";
 
-    if (error.response?.status === 401 && !original?._retry && original?.url !== "/auth/refresh") {
+    // Never attempt refresh for auth endpoints or already-retried requests
+    const isAuthEndpoint = AUTH_ENDPOINTS.some((e) => url.endsWith(e));
+    if (error.response?.status === 401 && !original?._retry && !isAuthEndpoint) {
       if (isRefreshing) {
         return new Promise((resolve, reject) => {
           failedQueue.push({ resolve, reject });
@@ -49,8 +55,19 @@ api.interceptors.response.use(
 
 export function getErrorMessage(error: unknown): string {
   if (axios.isAxiosError(error)) {
-    return error.response?.data?.detail || error.message || "An error occurred";
+    const status = error.response?.status;
+    const detail = error.response?.data?.detail;
+
+    if (!error.response) return "Unable to connect to server. Please check your connection.";
+    if (status === 401) return "Invalid email or password.";
+    if (status === 403) return "You don't have permission to do that.";
+    if (status === 429) return "Too many requests. Please try again later.";
+    if (status && status >= 500) return "Something went wrong. Please try again.";
+
+    // Use backend validation message for 400/422 errors
+    if (typeof detail === "string") return detail;
+    if (Array.isArray(detail)) return detail[0]?.msg ?? "Validation error.";
   }
   if (error instanceof Error) return error.message;
-  return "An unexpected error occurred";
+  return "An unexpected error occurred.";
 }

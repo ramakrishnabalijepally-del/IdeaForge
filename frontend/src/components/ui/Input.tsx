@@ -26,7 +26,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             id={id}
             className={cn(
-              "w-full bg-surface-DEFAULT border border-surface-border rounded-lg px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-colors",
+              "w-full bg-surface-DEFAULT border border-surface-border rounded-lg px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-colors caret-amber-400",
               icon && "pl-9",
               error && "border-red-500 focus:ring-red-500/50 focus:border-red-500",
               className
@@ -59,7 +59,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           id={id}
           className={cn(
-            "w-full bg-surface-DEFAULT border border-surface-border rounded-lg px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-colors resize-none",
+            "w-full bg-surface-DEFAULT border border-surface-border rounded-lg px-3 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-colors resize-none caret-amber-400",
             error && "border-red-500",
             className
           )}

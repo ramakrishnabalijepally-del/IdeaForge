@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { Suspense, useEffect, useState, useCallback } from "react";
 import { IdeaCard } from "@/components/ideas/IdeaCard";
 import { IdeaFiltersPanel } from "@/components/ideas/IdeaFilters";
 import { IdeaGridSkeleton } from "@/components/ui/Skeleton";
@@ -11,7 +11,7 @@ import { api } from "@/lib/api";
 import type { IdeaListResponse, IdeaFilters, Idea } from "@/types";
 import { useSearchParams } from "next/navigation";
 
-export default function ExplorePage() {
+function ExploreContent() {
   const searchParams = useSearchParams();
   const [data, setData] = useState<IdeaListResponse | null>(null);
   const [loading, setLoading] = useState(true);
@@ -78,7 +78,6 @@ export default function ExplorePage() {
             ))}
           </div>
 
-          {/* Pagination */}
           {data.total_pages > 1 && (
             <div className="flex items-center justify-center gap-2">
               <Button
@@ -103,5 +102,17 @@ export default function ExplorePage() {
         </>
       )}
     </div>
+  );
+}
+
+export default function ExplorePage() {
+  return (
+    <Suspense fallback={
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <IdeaGridSkeleton count={12} />
+      </div>
+    }>
+      <ExploreContent />
+    </Suspense>
   );
 }

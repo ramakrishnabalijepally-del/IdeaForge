@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import type { Metadata } from "next";
 import { Mail, MessageSquare, Send, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea } from "@/components/ui/Input";

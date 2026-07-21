@@ -1,11 +1,15 @@
 import json
 import logging
+import os
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
 from app.config import get_settings
 
 logger = logging.getLogger(__name__)
 settings = get_settings()
+
+def _set_google_api_key():
+    os.environ["GOOGLE_API_KEY"] = settings.GOOGLE_API_KEY
 
 SYSTEM_PROMPT = """You are an expert startup and manufacturing business consultant.
 When given an industry, niche, or keyword, generate a comprehensive, realistic business idea report.
@@ -35,11 +39,8 @@ IDEA_SCHEMA = """{
 
 
 def generate_idea_report(prompt: str) -> dict:
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.0-flash",
-        google_api_key=settings.GOOGLE_API_KEY,
-        temperature=0.7,
-    )
+    _set_google_api_key()
+    llm = ChatGoogleGenerativeAI(model=settings.GEMINI_MODEL, temperature=0.7)
 
     messages = [
         SystemMessage(content=SYSTEM_PROMPT),
@@ -64,9 +65,17 @@ def generate_idea_report(prompt: str) -> dict:
         logger.error(f"Failed to parse Gemini response as JSON: {e}\nRaw: {raw[:500]}")
         raise ValueError(f"AI returned malformed JSON: {e}")
 
-    # Enforce schema constraints
+    # Enforce schema constraints and fill defaults for optional fields
     report["feasibility_score"] = max(1.0, min(10.0, float(report.get("feasibility_score", 5.0))))
     if report.get("technical_difficulty") not in ("low", "medium", "high"):
         report["technical_difficulty"] = "medium"
+    if not isinstance(report.get("tags"), list):
+        report["tags"] = []
+    if not isinstance(report.get("execution_roadmap"), list):
+        report["execution_roadmap"] = []
+    for key in ("title", "problem_statement", "proposed_solution", "target_market",
+                "revenue_model", "competitive_landscape", "estimated_capital"):
+        if not report.get(key):
+            report[key] = ""
 
     return report

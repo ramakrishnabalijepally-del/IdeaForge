@@ -68,7 +68,9 @@ export default function DashboardPage() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
         {TABS.map((t) => (
           <div key={t.id} className="bg-surface-DEFAULT border border-surface-border rounded-xl p-4 text-center">
-            <p className="text-2xl font-bold font-heading text-amber-400">{t.count}</p>
+            <p className="text-2xl font-bold font-heading text-amber-400">
+              {loading ? <span className="inline-block w-6 h-6 bg-surface-hover rounded animate-pulse" /> : t.count}
+            </p>
             <p className="text-xs text-text-muted mt-1">{t.label}</p>
           </div>
         ))}
