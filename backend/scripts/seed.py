@@ -387,22 +387,21 @@ def seed():
 
         # Seed ideas
         for idea_data in IDEAS:
-            cat_name = idea_data.pop("category_name")
+            idea_copy = dict(idea_data)
+            cat_name = idea_copy.pop("category_name")
             cat_id = cat_map.get(cat_name)
             if not cat_id:
-                print(f"  Warning: category '{cat_name}' not found, skipping idea '{idea_data['title']}'")
+                print(f"  Warning: category '{cat_name}' not found, skipping idea '{idea_copy['title']}'")
                 continue
 
-            existing = db.query(Idea).filter(Idea.title == idea_data["title"]).first()
+            existing = db.query(Idea).filter(Idea.title == idea_copy["title"]).first()
             if not existing:
                 idea = Idea(
                     category_id=cat_id,
                     created_by_admin=True,
-                    **idea_data,
+                    **idea_copy,
                 )
                 db.add(idea)
-            else:
-                idea_data["category_name"] = cat_name  # restore for idempotency
 
         db.commit()
         print(f"✓ Ideas seeded")

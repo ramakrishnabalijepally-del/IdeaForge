@@ -43,6 +43,10 @@ api.interceptors.response.use(
         return api(original!);
       } catch (refreshError) {
         processQueue(refreshError);
+        // Refresh token expired — clear auth state and redirect to login
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new Event("auth:expired"));
+        }
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;

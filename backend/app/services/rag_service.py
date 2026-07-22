@@ -88,6 +88,9 @@ def rag_search(query: str, n_results: int = 5) -> dict:
             "sources": [],
         }
 
+    if collection.count() == 0:
+        return {"answer": "The search index is empty. Please ask an admin to reindex.", "sources": []}
+
     embedder = _get_embeddings()
     query_embedding = embedder.embed_query(query)
 

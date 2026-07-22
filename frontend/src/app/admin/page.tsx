@@ -51,11 +51,11 @@ export default function AdminPage() {
     try {
       const [analyticsRes, ideasRes, categoriesRes] = await Promise.all([
         api.get<Analytics>("/admin/analytics"),
-        api.get<{ items: Idea[] }>("/ideas?page_size=50"),
+        api.get<Idea[]>("/admin/ideas"),
         api.get<Category[]>("/categories"),
       ]);
       setAnalytics(analyticsRes.data);
-      setIdeas(ideasRes.data.items);
+      setIdeas(ideasRes.data);
       setCategories(categoriesRes.data);
     } catch (e) {
       toast.error(getErrorMessage(e));

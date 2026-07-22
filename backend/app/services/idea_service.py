@@ -98,11 +98,18 @@ def delete_idea(db: Session, idea_id: int) -> bool:
     return True
 
 
-def get_idea_of_the_day(db: Session) -> Optional[Idea]:
-    return db.query(Idea).options(joinedload(Idea.category)).filter(Idea.is_idea_of_the_day == True).order_by(func.random()).first()
+def get_idea_of_the_day(db: Session, current_user_id: Optional[int] = None) -> Optional[Idea]:
+    idea = db.query(Idea).options(joinedload(Idea.category)).filter(Idea.is_idea_of_the_day == True).order_by(func.random()).first()
+    if idea:
+        if current_user_id:
+            saved = db.query(SavedIdea).filter(SavedIdea.user_id == current_user_id, SavedIdea.idea_id == idea.id).first()
+            idea.is_saved = saved is not None
+        else:
+            idea.is_saved = False
+    return idea
 
 
-def get_related_ideas(db: Session, idea_id: int, limit: int = 4) -> list[Idea]:
+def get_related_ideas(db: Session, idea_id: int, current_user_id: Optional[int] = None, limit: int = 4) -> list[Idea]:
     base = db.query(Idea).filter(Idea.id == idea_id).first()
     if not base:
         return []
@@ -114,6 +121,20 @@ def get_related_ideas(db: Session, idea_id: int, limit: int = 4) -> list[Idea]:
         .limit(limit)
         .all()
     )
+    saved_ids: set[int] = set()
+    if current_user_id:
+        saved = db.query(SavedIdea.idea_id).filter(SavedIdea.user_id == current_user_id).all()
+        saved_ids = {s.idea_id for s in saved}
     for r in related:
-        r.is_saved = False
+        r.is_saved = r.id in saved_ids
     return related
+
+
+def set_idea_of_the_day(db: Session, idea_id: int) -> Optional[Idea]:
+    db.query(Idea).filter(Idea.is_idea_of_the_day == True).update({"is_idea_of_the_day": False})
+    idea = db.query(Idea).filter(Idea.id == idea_id).first()
+    if idea:
+        idea.is_idea_of_the_day = True
+        db.commit()
+        db.refresh(idea)
+    return idea

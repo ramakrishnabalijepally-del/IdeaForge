@@ -11,6 +11,7 @@ from app.models.category import Category
 from app.models.contact import ContactSubmission
 from app.dependencies import require_admin
 from app.services.rag_service import index_ideas
+from sqlalchemy.orm import joinedload
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 
@@ -59,6 +60,20 @@ def reindex_vector_store(db: Session = Depends(get_db), _: User = Depends(requir
     """Rebuild ChromaDB vector store from Postgres. Use after Render disk reset."""
     count = index_ideas(db)
     return {"message": f"Reindexed {count} ideas into vector store."}
+
+
+@router.get("/ideas")
+def list_all_ideas(db: Session = Depends(get_db), _: User = Depends(require_admin)):
+    ideas = db.query(Idea).options(joinedload(Idea.category)).order_by(Idea.created_at.desc()).all()
+    return [
+        {
+            "id": i.id, "title": i.title, "category": i.category.name if i.category else None,
+            "feasibility_score": i.feasibility_score, "technical_difficulty": i.technical_difficulty,
+            "capital_required_range": i.capital_required_range, "is_idea_of_the_day": i.is_idea_of_the_day,
+            "created_at": i.created_at,
+        }
+        for i in ideas
+    ]
 
 
 @router.get("/users")

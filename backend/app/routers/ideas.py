@@ -30,11 +30,13 @@ def list_ideas(
 
 
 @router.get("/idea-of-the-day", response_model=IdeaResponse)
-def idea_of_the_day(db: Session = Depends(get_db)):
-    idea = idea_service.get_idea_of_the_day(db)
+def idea_of_the_day(
+    db: Session = Depends(get_db),
+    current_user: Optional[User] = Depends(get_optional_user),
+):
+    idea = idea_service.get_idea_of_the_day(db, current_user.id if current_user else None)
     if not idea:
         raise HTTPException(status_code=404, detail="No Idea of the Day set")
-    idea.is_saved = False
     return idea
 
 
@@ -51,8 +53,12 @@ def get_idea(
 
 
 @router.get("/{idea_id}/related", response_model=list[IdeaResponse])
-def related_ideas(idea_id: int, db: Session = Depends(get_db)):
-    return idea_service.get_related_ideas(db, idea_id)
+def related_ideas(
+    idea_id: int,
+    db: Session = Depends(get_db),
+    current_user: Optional[User] = Depends(get_optional_user),
+):
+    return idea_service.get_related_ideas(db, idea_id, current_user.id if current_user else None)
 
 
 @router.post("", response_model=IdeaResponse, status_code=201)

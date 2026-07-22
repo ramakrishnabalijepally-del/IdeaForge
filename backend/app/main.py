@@ -1,4 +1,5 @@
 import logging
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import get_settings
@@ -9,6 +10,22 @@ logger = logging.getLogger(__name__)
 
 settings = get_settings()
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Auto-reindex ChromaDB on every startup so RAG works after cold deploys
+    try:
+        from app.database import SessionLocal
+        from app.services.rag_service import index_ideas
+        db = SessionLocal()
+        count = index_ideas(db)
+        logger.info(f"Startup: indexed {count} ideas into ChromaDB")
+        db.close()
+    except Exception as e:
+        logger.warning(f"Startup reindex failed (non-fatal): {e}")
+    yield
+
+
 app = FastAPI(
     title="IdeaForge API",
     description="AI-Powered Startup & Manufacturing Idea Explorer",
@@ -16,6 +33,7 @@ app = FastAPI(
     docs_url="/api/docs",
     redoc_url="/api/redoc",
     openapi_url="/api/openapi.json",
+    lifespan=lifespan,
 )
 
 app.add_middleware(

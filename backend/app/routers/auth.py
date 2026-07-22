@@ -55,15 +55,14 @@ def refresh(response: Response, refresh_token: Optional[str] = Cookie(default=No
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid refresh token")
 
-    _set_auth_cookies(response, user)
-    access_token = create_access_token({"sub": str(user.id)})
+    access_token = _set_auth_cookies(response, user)
     return {"access_token": access_token}
 
 
 @router.post("/logout")
 def logout(response: Response):
-    response.delete_cookie("access_token")
-    response.delete_cookie("refresh_token")
+    response.delete_cookie("access_token", samesite="none", secure=True, httponly=True)
+    response.delete_cookie("refresh_token", samesite="none", secure=True, httponly=True)
     return {"message": "Logged out"}
 
 
@@ -72,8 +71,9 @@ def me(current_user: User = Depends(get_current_user)):
     return current_user
 
 
-def _set_auth_cookies(response: Response, user: User):
+def _set_auth_cookies(response: Response, user: User) -> str:
     access_token = create_access_token({"sub": str(user.id)})
     refresh_token = create_refresh_token({"sub": str(user.id)})
     response.set_cookie(key="access_token", value=access_token, max_age=settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60, **COOKIE_OPTS)
     response.set_cookie(key="refresh_token", value=refresh_token, max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 86400, **COOKIE_OPTS)
+    return access_token

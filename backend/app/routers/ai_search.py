@@ -10,7 +10,7 @@ from app.models.user import User
 router = APIRouter(prefix="/ai/search", tags=["ai"])
 
 
-@router.post("", response_model=AISearchResponse, status_code=201)
+@router.post("", response_model=AISearchResponse, status_code=200)
 def search(
     data: AISearchRequest,
     db: Session = Depends(get_db),
