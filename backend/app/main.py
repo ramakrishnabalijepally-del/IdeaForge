@@ -57,6 +57,10 @@ app.include_router(contact.router, prefix=API_PREFIX)
 app.include_router(recommendations.router, prefix=API_PREFIX)
 
 
+@app.get("/")
+def root():
+    return {"service": "IdeaForge API", "docs": "/api/docs", "health": "/api/health"}
+
 @app.get("/api/health")
 def health():
     return {"status": "ok", "service": "IdeaForge API"}
