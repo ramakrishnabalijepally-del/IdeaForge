@@ -6,536 +6,746 @@
   <title>IdeaForge – Assessment Submission</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --bg: #0F0F0F;
-      --bg-secondary: #1A1A1A;
+      --bg-2: #141414;
+      --bg-3: #1A1A1A;
       --surface: #1E1E1E;
-      --surface-hover: #2A2A2A;
-      --border: #333333;
-      --border-subtle: #242424;
+      --surface-2: #242424;
+      --surface-3: #2A2A2A;
+      --border: #2E2E2E;
+      --border-2: #3A3A3A;
       --amber: #FBBF24;
-      --amber-dark: #F59E0B;
-      --amber-deep: #D97706;
+      --amber-2: #F59E0B;
+      --amber-3: #D97706;
       --orange: #F97316;
+      --green: #22C55E;
+      --blue: #3B82F6;
       --text: #F5F5F5;
-      --text-secondary: #A3A3A3;
-      --text-muted: #737373;
+      --text-2: #A3A3A3;
+      --text-3: #737373;
+      --font-head: "Space Grotesk", sans-serif;
+      --font-body: "Inter", sans-serif;
+      --font-mono: "Fira Code", monospace;
     }
 
     html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
 
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: "Inter", sans-serif;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-    }
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
     /* ── HERO ── */
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 80px 24px 72px;
+      padding: 88px 24px 80px;
       text-align: center;
+      border-bottom: 1px solid var(--border);
     }
-
     .hero::before {
       content: "";
-      position: absolute;
-      top: -120px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 700px;
-      height: 400px;
-      background: radial-gradient(ellipse, rgba(251,191,36,0.12) 0%, transparent 70%);
+      position: absolute; top: -180px; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 500px;
+      background: radial-gradient(ellipse, rgba(251,191,36,0.10) 0%, transparent 65%);
       pointer-events: none;
     }
-
     .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(251,191,36,0.08);
-      border: 1px solid rgba(251,191,36,0.25);
-      color: var(--amber);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: 999px;
-      margin-bottom: 28px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.22);
+      color: var(--amber); font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 6px 14px; border-radius: 999px; margin-bottom: 32px;
     }
+    .hero-badge span { width: 6px; height: 6px; background: var(--amber); border-radius: 50%; animation: blink 2s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
-    .hero-badge::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      background: var(--amber);
-      border-radius: 50%;
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
+    .hero h1 { font-family: var(--font-head); font-size: 72px; font-weight: 800; line-height: 1; letter-spacing: -2px; margin-bottom: 6px; }
+    .hero h1 .w { color: var(--text); }
+    .hero h1 .y { color: var(--amber); }
+    .hero-tagline { font-family: var(--font-head); font-size: 14px; font-weight: 500; color: var(--text-3); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 24px; }
+    .hero-desc { max-width: 560px; margin: 0 auto 44px; font-size: 16px; color: var(--text-2); line-height: 1.75; }
 
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
-    }
-
-    .hero-logo {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 64px;
-      font-weight: 800;
-      line-height: 1.05;
-      margin-bottom: 8px;
-      letter-spacing: -1px;
-    }
-
-    .hero-logo .idea { color: var(--text); }
-    .hero-logo .forge { color: var(--amber); }
-
-    .hero-sub {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text-muted);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .hero-desc {
-      max-width: 560px;
-      margin: 0 auto 40px;
-      font-size: 16px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    .cta-row {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 13px 28px;
-      border-radius: 10px;
-      font-family: "Inter", sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
-      cursor: pointer;
-    }
-
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 52px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: 10px; font-family: var(--font-body); font-size: 15px; font-weight: 600; text-decoration: none; transition: transform .15s, box-shadow .15s, background .15s; cursor: pointer; border: none; }
     .btn:hover { transform: translateY(-1px); }
-    .btn:active { transform: translateY(0); }
+    .btn-primary { background: linear-gradient(135deg, var(--amber), var(--orange)); color: #0F0F0F; box-shadow: 0 0 28px rgba(251,191,36,0.28); }
+    .btn-primary:hover { box-shadow: 0 0 42px rgba(251,191,36,0.45); }
+    .btn-secondary { background: var(--surface); border: 1px solid var(--border-2); color: var(--text); }
+    .btn-secondary:hover { background: var(--surface-3); }
+    .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text-2); }
+    .btn-ghost:hover { background: var(--surface); color: var(--text); }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--amber) 0%, var(--orange) 100%);
-      color: #0F0F0F;
-      box-shadow: 0 0 24px rgba(251,191,36,0.3);
+    .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; max-width: 680px; margin: 0 auto; }
+    .stat-item { background: var(--surface); padding: 18px 12px; text-align: center; }
+    .stat-num { font-family: var(--font-head); font-size: 32px; font-weight: 800; color: var(--amber); line-height: 1; }
+    .stat-label { font-size: 11px; color: var(--text-3); margin-top: 4px; font-weight: 500; letter-spacing: 0.05em; }
+
+    /* ── SECTIONS ── */
+    .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+
+    .sec-header { margin-bottom: 36px; }
+    .sec-num { font-family: var(--font-mono); font-size: 12px; color: var(--amber); font-weight: 500; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .sec-title { font-family: var(--font-head); font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+    .sec-desc { font-size: 15px; color: var(--text-2); line-height: 1.7; max-width: 640px; }
+
+    /* ── CARDS ── */
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+    .card-title { font-family: var(--font-head); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .card-desc { font-size: 13px; color: var(--text-3); line-height: 1.6; }
+
+    /* ── GRID 3 ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+    @media(max-width:680px){ .grid-3{grid-template-columns:1fr 1fr;} }
+    @media(max-width:480px){ .grid-3,.grid-2{grid-template-columns:1fr;} }
+
+    /* ── ARCH DIAGRAM ── */
+    .arch { background: var(--bg-2); border: 1px solid var(--border); border-radius: 16px; padding: 32px; overflow-x: auto; }
+    .arch-row { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: nowrap; margin-bottom: 0; }
+    .arch-box {
+      background: var(--surface); border: 1px solid var(--border-2); border-radius: 10px;
+      padding: 14px 18px; text-align: center; min-width: 130px; flex-shrink: 0;
     }
-    .btn-primary:hover { box-shadow: 0 0 36px rgba(251,191,36,0.45); }
+    .arch-box.amber { border-color: rgba(251,191,36,0.4); background: rgba(251,191,36,0.06); }
+    .arch-box.blue { border-color: rgba(59,130,246,0.35); background: rgba(59,130,246,0.06); }
+    .arch-box.green { border-color: rgba(34,197,94,0.35); background: rgba(34,197,94,0.06); }
+    .arch-box-icon { font-size: 22px; margin-bottom: 6px; }
+    .arch-box-title { font-family: var(--font-head); font-size: 12px; font-weight: 700; color: var(--text); }
+    .arch-box-sub { font-size: 10px; color: var(--text-3); margin-top: 2px; line-height: 1.4; }
+    .arch-arrow { font-size: 18px; color: var(--text-3); padding: 0 8px; flex-shrink: 0; }
+    .arch-layers { display: flex; flex-direction: column; gap: 20px; }
+    .arch-layer-label { font-family: var(--font-mono); font-size: 10px; font-weight: 500; color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+    .arch-layer { display: flex; align-items: center; gap: 0; justify-content: center; }
+    .arch-section { text-align: center; }
+    .arch-vert-arrow { text-align: center; font-size: 18px; color: var(--text-3); padding: 4px 0; }
 
-    .btn-secondary {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-    .btn-secondary:hover { background: var(--surface-hover); }
+    /* ── AI CHIPS ── */
+    .ai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media(max-width:540px){ .ai-grid{grid-template-columns:1fr;} }
+    .ai-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .ai-card.chosen { border-color: rgba(251,191,36,0.3); }
+    .ai-card.skipped { opacity: 0.55; }
+    .ai-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .ai-card-icon { font-size: 20px; }
+    .ai-card-name { font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--text); }
+    .ai-card-badge { margin-left: auto; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; }
+    .badge-yes { background: rgba(34,197,94,0.12); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
+    .badge-no { background: var(--surface-2); color: var(--text-3); border: 1px solid var(--border); }
+    .ai-card-desc { font-size: 13px; color: var(--text-3); line-height: 1.6; }
 
-    /* ── DIVIDER ── */
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
-      margin: 0 24px;
-    }
+    /* ── CODE BLOCK ── */
+    .code-block { background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .code-header { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--border); }
+    .code-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .code-label { font-size: 12px; color: var(--text-3); font-family: var(--font-mono); margin-left: auto; }
+    pre { padding: 20px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.7; color: #d4d4d4; overflow-x: auto; white-space: pre-wrap; word-break: break-word; }
+    .c-amber { color: var(--amber); }
+    .c-green { color: #86efac; }
+    .c-blue { color: #93c5fd; }
+    .c-gray { color: var(--text-3); }
+    .c-white { color: var(--text); }
 
-    /* ── CONTENT ── */
-    .content {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 64px 24px;
-    }
+    /* ── USER FLOW ── */
+    .flow { display: flex; flex-direction: column; gap: 0; }
+    .flow-step { display: flex; gap: 16px; position: relative; }
+    .flow-step:not(:last-child)::after { content:""; position:absolute; left:19px; top:40px; bottom:0; width:1px; background: var(--border); }
+    .flow-num { width: 40px; height: 40px; border-radius: 50%; background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.3); color: var(--amber); font-family: var(--font-head); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1; }
+    .flow-body { padding: 8px 0 32px; }
+    .flow-title { font-family: var(--font-head); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .flow-desc { font-size: 13px; color: var(--text-2); line-height: 1.6; }
 
-    .section { margin-bottom: 56px; }
+    /* ── TESTING ── */
+    .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+    @media(max-width:600px){ .test-grid{grid-template-columns:1fr 1fr;} }
+    .test-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+    .test-card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+    .test-card-name { font-size: 12px; font-weight: 700; color: var(--text); font-family: var(--font-head); }
+    .test-tag { font-size: 10px; padding: 2px 7px; border-radius: 4px; font-weight: 600; }
+    .test-pass { background: rgba(34,197,94,0.12); color: var(--green); }
+    .test-items { font-size: 12px; color: var(--text-3); line-height: 1.6; }
 
-    .section-label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-    }
-
-    .section-label::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: var(--border-subtle);
-    }
-
-    /* ── FEATURES ── */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    @media (max-width: 640px) { .feature-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 400px) { .feature-grid { grid-template-columns: 1fr; } }
-
-    .feature-card {
-      background: var(--surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 20px;
-      transition: border-color 0.2s, background 0.2s;
-    }
-
-    .feature-card:hover {
-      border-color: rgba(251,191,36,0.3);
-      background: var(--surface-hover);
-    }
-
-    .feature-icon {
-      width: 36px;
-      height: 36px;
-      background: rgba(251,191,36,0.1);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      margin-bottom: 12px;
-    }
-
-    .feature-name {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-
-    .feature-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-
-    /* ── CREDENTIALS ── */
-    .cred-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    @media (max-width: 480px) { .cred-grid { grid-template-columns: 1fr; } }
-
-    .cred-card {
-      background: var(--surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 20px 24px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cred-card::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--amber), var(--orange));
-    }
-
-    .cred-role {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 14px;
-    }
-
-    .cred-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 7px 0;
-      border-bottom: 1px solid var(--border-subtle);
-    }
+    /* ── CRED ── */
+    .cred-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media(max-width:500px){ .cred-grid{grid-template-columns:1fr;} }
+    .cred-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .cred-top { height: 3px; background: linear-gradient(90deg, var(--amber), var(--orange)); }
+    .cred-body { padding: 18px 20px; }
+    .cred-role { font-family: var(--font-head); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; }
+    .cred-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border); }
     .cred-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .cred-label { font-size: 12px; color: var(--text-3); }
+    .cred-value { font-family: var(--font-mono); font-size: 12px; font-weight: 500; color: var(--text); }
 
-    .cred-label { font-size: 12px; color: var(--text-muted); }
+    /* ── TECH PILLS ── */
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill { display: flex; align-items: center; gap: 6px; background: var(--surface); border: 1px solid var(--border); border-radius: 7px; padding: 7px 13px; font-size: 13px; font-weight: 500; color: var(--text-2); transition: border-color .2s, color .2s; }
+    .pill:hover { border-color: rgba(251,191,36,0.3); color: var(--text); }
+    .pill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--amber); flex-shrink: 0; }
 
-    .cred-value {
-      font-family: "SF Mono", "Fira Code", "Consolas", monospace;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    /* ── TECH STACK ── */
-    .stack-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 10px;
-    }
-
-    .stack-item {
-      background: var(--surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      padding: 10px 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      transition: border-color 0.2s;
-    }
-
-    .stack-item:hover { border-color: rgba(251,191,36,0.25); color: var(--text); }
-
-    .stack-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--amber);
-      flex-shrink: 0;
-    }
-
-    /* ── URLS BOX ── */
-    .url-box {
-      background: var(--surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .url-row {
-      display: flex;
-      align-items: center;
-      padding: 16px 20px;
-      gap: 14px;
-      border-bottom: 1px solid var(--border-subtle);
-    }
+    /* ── URL BOX ── */
+    .url-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .url-row { display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-bottom: 1px solid var(--border); }
     .url-row:last-child { border-bottom: none; }
+    .url-icon { width: 36px; height: 36px; background: rgba(251,191,36,0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .url-label { font-size: 11px; color: var(--text-3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+    .url-val { font-size: 13px; font-family: var(--font-mono); color: var(--amber); }
 
-    .url-icon {
-      width: 32px;
-      height: 32px;
-      background: rgba(251,191,36,0.1);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-      flex-shrink: 0;
-    }
-
-    .url-meta { flex: 1; min-width: 0; }
-    .url-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
-    .url-link {
-      font-size: 12px;
-      color: var(--amber);
-      text-decoration: none;
-      word-break: break-all;
-    }
-    .url-link:hover { text-decoration: underline; }
+    /* ── CANDIDATE ── */
+    .candidate-box { background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.2); border-radius: 12px; padding: 24px 28px; }
+    .candidate-box p { font-size: 14px; color: var(--text-2); line-height: 1.7; }
+    .candidate-box strong { color: var(--text); }
 
     /* ── FOOTER ── */
-    .footer {
-      text-align: center;
-      padding: 32px 24px 48px;
-      font-size: 13px;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border-subtle);
-    }
-
+    .footer { padding: 40px 24px; text-align: center; font-size: 13px; color: var(--text-3); }
     .footer strong { color: var(--amber); }
 
-    /* ── RESPONSIVE HERO ── */
-    @media (max-width: 540px) {
-      .hero-logo { font-size: 44px; }
-      .hero { padding: 60px 20px 52px; }
+    /* RESPONSIVE */
+    @media(max-width:540px) {
+      .hero h1 { font-size: 48px; letter-spacing: -1px; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
+      .stat-row .stat-item:nth-child(1) { border-bottom: 1px solid var(--border); }
+      .stat-row .stat-item:nth-child(2) { border-bottom: 1px solid var(--border); }
     }
+
+    /* TABLE */
+    .tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .tbl th { text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); background: var(--surface-2); border-bottom: 1px solid var(--border); }
+    .tbl td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .tbl tr:last-child td { border-bottom: none; }
+    .tbl tr:hover td { background: rgba(255,255,255,0.02); }
+    .tbl-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; overflow-x: auto; }
+
+    /* DIVIDER */
+    hr.div { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+    /* CALLOUT */
+    .callout { background: var(--surface-2); border-left: 3px solid var(--amber); border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13px; color: var(--text-2); line-height: 1.65; margin-top: 16px; }
   </style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-badge">Job Assessment Submission</div>
-    <div class="hero-logo">
-      <span class="idea">Idea</span><span class="forge">Forge</span>
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-badge"><span></span> Job Assessment Submission — 2026</div>
+  <h1><span class="w">Idea</span><span class="y">Forge</span></h1>
+  <div class="hero-tagline">AI-Powered Startup &amp; Manufacturing Idea Explorer</div>
+  <p class="hero-desc">
+    A production-ready full-stack web application that helps entrepreneurs and manufacturers
+    discover, generate, and save startup ideas — powered by Gemini AI, RAG search, and a
+    personalised recommendation engine.
+  </p>
+  <div class="cta-row">
+    <a href="https://idea-forge-neon.vercel.app" target="_blank" class="btn btn-primary">&#9654;&nbsp; View Live App</a>
+    <a href="https://github.com/ramakrishnabalijepally-del/IdeaForge" target="_blank" class="btn btn-secondary">&#128196;&nbsp; GitHub Repo</a>
+    <a href="https://ideaforge-blbt.onrender.com/docs" target="_blank" class="btn btn-ghost">&#9881;&nbsp; API Docs</a>
+  </div>
+  <div class="stat-row">
+    <div class="stat-item"><div class="stat-num">10</div><div class="stat-label">Frontend Pages</div></div>
+    <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">AI Features</div></div>
+    <div class="stat-item"><div class="stat-num">28</div><div class="stat-label">Automated Tests</div></div>
+    <div class="stat-item"><div class="stat-num">9</div><div class="stat-label">API Routers</div></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ══ 1. REQUIREMENT ANALYSIS ══ -->
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-num">01 / Requirement Analysis</div>
+    <div class="sec-title">Problem, Users &amp; Architecture</div>
+    <div class="sec-desc">Existing platforms like 10000ideas.com and IdeaBrowser are static idea lists with no AI, no personalisation, and no natural-language querying. IdeaForge solves all three.</div>
+  </div>
+
+  <!-- System Architecture -->
+  <div class="arch" style="margin-bottom:24px;">
+    <div style="text-align:center; font-family:var(--font-mono); font-size:11px; color:var(--text-3); margin-bottom:24px; letter-spacing:0.1em; text-transform:uppercase;">System Architecture</div>
+    <div style="display:flex; flex-direction:column; gap:12px; align-items:center;">
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+        <div class="arch-box amber">
+          <div class="arch-box-icon">&#128100;</div>
+          <div class="arch-box-title">User / Browser</div>
+          <div class="arch-box-sub">Any device</div>
+        </div>
+      </div>
+
+      <div class="arch-vert-arrow">&#8595; HTTPS</div>
+
+      <div class="arch-box amber">
+        <div class="arch-box-icon">&#9889;</div>
+        <div class="arch-box-title">Next.js 14 Frontend</div>
+        <div class="arch-box-sub">Vercel · App Router · TypeScript</div>
+      </div>
+
+      <div class="arch-vert-arrow">&#8595; REST API · httpOnly Cookies</div>
+
+      <div class="arch-box amber">
+        <div class="arch-box-icon">&#128640;</div>
+        <div class="arch-box-title">FastAPI Backend</div>
+        <div class="arch-box-sub">Render · Python 3.11 · 9 Routers</div>
+      </div>
+
+      <div style="display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap; justify-content:center;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+          <div style="font-size:14px; color:var(--text-3);">&#8595; SQLAlchemy ORM</div>
+          <div class="arch-box blue">
+            <div class="arch-box-icon">&#128451;</div>
+            <div class="arch-box-title">PostgreSQL</div>
+            <div class="arch-box-sub">Neon Free Tier</div>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+          <div style="font-size:14px; color:var(--text-3);">&#8595; chromadb client</div>
+          <div class="arch-box blue">
+            <div class="arch-box-icon">&#128202;</div>
+            <div class="arch-box-title">ChromaDB</div>
+            <div class="arch-box-sub">Vector Store · Render Disk</div>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+          <div style="font-size:14px; color:var(--text-3);">&#8595; LangChain</div>
+          <div class="arch-box green">
+            <div class="arch-box-icon">&#129302;</div>
+            <div class="arch-box-title">Google Gemini</div>
+            <div class="arch-box-sub">3.1 Flash Lite + Embedding 001</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="hero-sub">AI-Powered Startup &amp; Manufacturing Idea Explorer</div>
-    <p class="hero-desc">
-      A full-stack web application that helps entrepreneurs and manufacturers discover,
-      generate, and save business ideas using semantic search and generative AI.
+  </div>
+
+  <!-- User Personas -->
+  <div class="grid-3">
+    <div class="card">
+      <div style="font-size:24px; margin-bottom:8px;">&#128187;</div>
+      <div class="card-title">Priya, 28 — IT Professional</div>
+      <div class="card-desc">Wants to start a product business but doesn't know which domain. Needs ideas filtered by technical difficulty and low capital since she can build apps herself.</div>
+    </div>
+    <div class="card">
+      <div style="font-size:24px; margin-bottom:8px;">&#127981;</div>
+      <div class="card-title">Rahul, 42 — Factory Owner</div>
+      <div class="card-desc">Runs a steel fabrication shop. Needs manufacturing-specific ideas matched to a ₹1–3cr reinvestment budget and existing CNC machinery.</div>
+    </div>
+    <div class="card">
+      <div style="font-size:24px; margin-bottom:8px;">&#127979;</div>
+      <div class="card-title">Sandra, 22 — MBA Student</div>
+      <div class="card-desc">Needs structured idea evaluation for class assignments. Wants quick feasibility scores and competitive landscape without hours of research.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 2. PROMPT ENGINEERING ══ -->
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-num">02 / Prompt Engineering</div>
+    <div class="sec-title">Master Prompt &amp; AI Prompt Design</div>
+    <div class="sec-desc">Two carefully engineered system prompts power the AI features — one for idea generation (creative, temp 0.7) and one for RAG search (factual, temp 0.3).</div>
+  </div>
+
+  <div class="code-block" style="margin-bottom:16px;">
+    <div class="code-header">
+      <div class="code-dot" style="background:#ff5f57;"></div>
+      <div class="code-dot" style="background:#febc2e;"></div>
+      <div class="code-dot" style="background:#28c840;"></div>
+      <div class="code-label">AI Idea Generator — System Prompt (backend/app/services/ai_generator.py)</div>
+    </div>
+    <pre><span class="c-amber">SYSTEM:</span> <span class="c-white">You are an expert startup and manufacturing business consultant.</span>
+<span class="c-white">Generate a detailed, realistic business idea based on the user's niche or keyword.</span>
+<span class="c-white">Return ONLY valid JSON matching this exact schema:</span>
+
+<span class="c-green">{
+  "title": "string",
+  "problem_statement": "string",
+  "proposed_solution": "string",
+  "target_market": "string",
+  "revenue_model": "string",
+  "competitive_landscape": "string",
+  "estimated_capital": "string",
+  "feasibility_score": 1-10,
+  "technical_difficulty": "low|medium|high",
+  "tags": ["string"],
+  "execution_roadmap": [
+    "Step 1: ...", "Step 2: ...", "Step 3: ...",
+    "Step 4: ...", "Step 5: ..."
+  ]
+}</span>
+
+<span class="c-amber">Rules:</span>
+<span class="c-gray">- feasibility_score must be 1-10 (integer)</span>
+<span class="c-gray">- technical_difficulty must be exactly "low", "medium", or "high"</span>
+<span class="c-gray">- execution_roadmap must have exactly 5 actionable steps</span>
+<span class="c-gray">- Be specific and realistic — no generic placeholders</span>
+<span class="c-gray">- Output ONLY the JSON object, no markdown, no explanation</span></pre>
+  </div>
+
+  <div class="code-block">
+    <div class="code-header">
+      <div class="code-dot" style="background:#ff5f57;"></div>
+      <div class="code-dot" style="background:#febc2e;"></div>
+      <div class="code-dot" style="background:#28c840;"></div>
+      <div class="code-label">RAG Search — System Prompt (backend/app/services/rag_service.py)</div>
+    </div>
+    <pre><span class="c-amber">SYSTEM:</span> <span class="c-white">You are IdeaForge's AI search assistant. Your sole purpose is to help</span>
+<span class="c-white">users discover relevant startup and manufacturing business ideas.</span>
+
+<span class="c-amber">Format rules:</span>
+<span class="c-gray">1. One sentence explaining what relevant ideas were found for the query.</span>
+<span class="c-gray">2. Each idea: **[Idea Title]** — why it's relevant + feasibility + capital.</span>
+<span class="c-gray">3. A brief closing recommendation (1-2 sentences max).</span>
+<span class="c-gray">4. Only surface ideas from context — do NOT invent ideas.</span>
+<span class="c-gray">5. Under 350 words. Use markdown bold for idea titles.</span>
+
+<span class="c-amber">Temperature:</span> <span class="c-blue">0.3</span> <span class="c-gray">(factual, grounded — not creative)</span>
+<span class="c-amber">Generator temp:</span> <span class="c-blue">0.7</span> <span class="c-gray">(creative variation for novel ideas)</span></pre>
+  </div>
+  <div class="callout">
+    <strong>Prompt Engineering Decisions:</strong> The generator uses strict JSON schema enforcement to prevent hallucinated structures. The RAG prompt explicitly forbids inventing ideas and enforces citation of source titles. Separate temperatures (0.7 vs 0.3) balance creativity vs factual grounding for their respective tasks.
+  </div>
+</div>
+
+<!-- ══ 3. UI/UX ══ -->
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-num">03 / UI/UX Design</div>
+    <div class="sec-title">Design System &amp; Pages</div>
+    <div class="sec-desc">Dark-first design with amber/yellow brand accent. Space Grotesk for headings, Inter for body. All 10 pages are fully responsive across mobile, tablet, and desktop.</div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-title" style="margin-bottom:12px;">&#127912; Colour Palette</div>
+      <div style="display:flex; flex-direction:column; gap:7px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:28px; height:28px; background:#FBBF24; border-radius:5px; flex-shrink:0;"></div>
+          <span style="font-family:var(--font-mono); font-size:12px; color:var(--text-2);">#FBBF24 — Amber Primary</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:28px; height:28px; background:#F97316; border-radius:5px; flex-shrink:0;"></div>
+          <span style="font-family:var(--font-mono); font-size:12px; color:var(--text-2);">#F97316 — Orange Accent</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:28px; height:28px; background:#0F0F0F; border-radius:5px; flex-shrink:0; border:1px solid #333;"></div>
+          <span style="font-family:var(--font-mono); font-size:12px; color:var(--text-2);">#0F0F0F — Background</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:28px; height:28px; background:#1E1E1E; border-radius:5px; flex-shrink:0; border:1px solid #333;"></div>
+          <span style="font-family:var(--font-mono); font-size:12px; color:var(--text-2);">#1E1E1E — Surface</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:28px; height:28px; background:#F5F5F5; border-radius:5px; flex-shrink:0;"></div>
+          <span style="font-family:var(--font-mono); font-size:12px; color:var(--text-2);">#F5F5F5 — Text Primary</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title" style="margin-bottom:12px;">&#128292; Typography &amp; Components</div>
+      <div style="font-size:13px; color:var(--text-3); line-height:1.7;">
+        <div style="margin-bottom:8px;"><span style="color:var(--text-2); font-weight:600;">Headings:</span> Space Grotesk 700–800 · letter-spacing -1px</div>
+        <div style="margin-bottom:8px;"><span style="color:var(--text-2); font-weight:600;">Body:</span> Inter 400–600 · line-height 1.7</div>
+        <div style="margin-bottom:8px;"><span style="color:var(--text-2); font-weight:600;">Mono:</span> Fira Code (code blocks, API)</div>
+        <hr class="div" style="margin:12px 0;" />
+        <div style="margin-bottom:4px;">&#9679; 5-variant Button system (primary, secondary, ghost, danger, ai)</div>
+        <div style="margin-bottom:4px;">&#9679; SVG Feasibility Gauge (3 sizes)</div>
+        <div style="margin-bottom:4px;">&#9679; Skeleton loader for every list/grid</div>
+        <div style="margin-bottom:4px;">&#9679; Sticky auth-aware Navbar + mobile hamburger</div>
+        <div>&#9679; httpOnly cookie autofill dark-mode fix (inset box-shadow)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>Page</th><th>Route</th><th>Access</th><th>Key Features</th></tr></thead>
+      <tbody>
+        <tr><td>Home</td><td>/</td><td>Public</td><td>Idea of the Day, category browser, feature overview</td></tr>
+        <tr><td>Explore</td><td>/explore</td><td>Public</td><td>Filterable paginated grid (category, difficulty, capital, feasibility, search)</td></tr>
+        <tr><td>Idea Detail</td><td>/explore/[id]</td><td>Public</td><td>Full idea info, SVG feasibility gauge, related ideas, save button</td></tr>
+        <tr><td>AI Generator</td><td>/generate</td><td>User</td><td>Prompt input, daily usage meter (10/day), structured report card, history</td></tr>
+        <tr><td>AI Search</td><td>/search</td><td>User</td><td>Natural-language RAG search, cited sources as clickable idea links</td></tr>
+        <tr><td>Dashboard</td><td>/dashboard</td><td>User</td><td>4 tabs: Saved, AI History, Search History, Recommendations</td></tr>
+        <tr><td>Admin Panel</td><td>/admin</td><td>Admin</td><td>Analytics, Idea CRUD, category management, vector store reindex</td></tr>
+        <tr><td>About</td><td>/about</td><td>Public</td><td>Product story, AI justification, tech stack</td></tr>
+        <tr><td>Contact</td><td>/contact</td><td>Public</td><td>Contact form → stored in DB, visible in Admin</td></tr>
+        <tr><td>Login / Signup</td><td>/login, /signup</td><td>Public</td><td>JWT auth, error handling, redirect to dashboard</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══ 4. AI CAPABILITIES ══ -->
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-num">04 / AI-Assisted Development &amp; AI Features</div>
+    <div class="sec-title">Which AI Was Used &amp; Why</div>
+    <div class="sec-desc">Built entirely with Claude Code. Three AI techniques selected based on domain fit — all others explicitly evaluated and excluded with justification.</div>
+  </div>
+
+  <div class="ai-grid" style="margin-bottom:16px;">
+    <div class="ai-card chosen">
+      <div class="ai-card-head">
+        <div class="ai-card-icon">&#129302;</div>
+        <div class="ai-card-name">LLM — Gemini 3.1 Flash Lite</div>
+        <span class="ai-card-badge badge-yes">&#10003; Used</span>
+      </div>
+      <div class="ai-card-desc">Powers the AI Idea Generator. Given a niche keyword, returns a fully structured JSON business report (problem, solution, market, revenue model, feasibility 1-10, 5-step roadmap). Temperature 0.7 for creative variation.</div>
+    </div>
+    <div class="ai-card chosen">
+      <div class="ai-card-head">
+        <div class="ai-card-icon">&#128202;</div>
+        <div class="ai-card-name">RAG — ChromaDB + Gemini Embeddings</div>
+        <span class="ai-card-badge badge-yes">&#10003; Used</span>
+      </div>
+      <div class="ai-card-desc">Idea database is a text knowledge base — perfect for RAG. Gemini Embedding 001 creates 1536-dim vectors. ChromaDB retrieves top-5 by cosine similarity. Gemini generates grounded answers with citations.</div>
+    </div>
+    <div class="ai-card chosen">
+      <div class="ai-card-head">
+        <div class="ai-card-icon">&#127919;</div>
+        <div class="ai-card-name">ML Recommendation — TF-IDF Cosine</div>
+        <span class="ai-card-badge badge-yes">&#10003; Used</span>
+      </div>
+      <div class="ai-card-desc">scikit-learn TF-IDF vectorises all ideas (title + problem + solution + tags). User's saved-idea profile is the mean vector. Cosine similarity ranks unsaved ideas. Lightweight, explainable, no training pipeline needed.</div>
+    </div>
+    <div class="ai-card skipped">
+      <div class="ai-card-head">
+        <div class="ai-card-icon">&#128247;</div>
+        <div class="ai-card-name">Computer Vision / OCR / Speech</div>
+        <span class="ai-card-badge badge-no">&#10007; Not Used</span>
+      </div>
+      <div class="ai-card-desc">Domain is purely textual. No images, PDFs, or audio in the user workflow. Would add infrastructure cost without user value. Explicitly excluded.</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Claude Code</strong> was used to build the entire application — all backend Python, all frontend TypeScript, all tests, configuration, and documentation. Every prompt was iteratively refined: schema enforcement was added after early Gemini responses omitted fields; auth cookie SameSite was changed from <code style="font-family:var(--font-mono); color:var(--amber);">lax</code> to <code style="font-family:var(--font-mono); color:var(--amber);">none</code> after cross-domain testing revealed cookie loss.
+  </div>
+</div>
+
+<!-- ══ 5. USER FLOW ══ -->
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-num">05 / Application Development</div>
+    <div class="sec-title">User Workflow &amp; Core Flows</div>
+    <div class="sec-desc">End-to-end journey for a registered user — from landing to personalised AI-powered recommendations.</div>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <div style="font-size:12px; font-weight:700; color:var(--text-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:16px;">Registered User Journey</div>
+      <div class="flow">
+        <div class="flow-step"><div class="flow-num">1</div><div class="flow-body"><div class="flow-title">Land on Homepage</div><div class="flow-desc">View Idea of the Day spotlight. Browse categories. No login needed.</div></div></div>
+        <div class="flow-step"><div class="flow-num">2</div><div class="flow-body"><div class="flow-title">Explore Ideas</div><div class="flow-desc">Filter by category, difficulty, capital range. Paginated grid of 12.</div></div></div>
+        <div class="flow-step"><div class="flow-num">3</div><div class="flow-body"><div class="flow-title">Sign Up / Login</div><div class="flow-desc">JWT auth. httpOnly cookies. Access + refresh token rotation.</div></div></div>
+        <div class="flow-step"><div class="flow-num">4</div><div class="flow-body"><div class="flow-title">Save Ideas</div><div class="flow-desc">Bookmark ideas from detail pages. Feeds the recommendation engine.</div></div></div>
+        <div class="flow-step"><div class="flow-num">5</div><div class="flow-body"><div class="flow-title">AI Generate</div><div class="flow-desc">Enter any niche → full structured business report in seconds.</div></div></div>
+        <div class="flow-step"><div class="flow-num">6</div><div class="flow-body"><div class="flow-title">AI Search (RAG)</div><div class="flow-desc">Ask a natural-language question → cited, grounded answer from idea database.</div></div></div>
+        <div class="flow-step"><div class="flow-num">7</div><div class="flow-body"><div class="flow-title">Dashboard</div><div class="flow-desc">Saved ideas, AI history, search history, personalised recommendations.</div></div></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:12px; font-weight:700; color:var(--text-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:16px;">RAG Pipeline (AI Search)</div>
+      <div class="flow">
+        <div class="flow-step"><div class="flow-num">1</div><div class="flow-body"><div class="flow-title">User types query</div><div class="flow-desc">"What manufacturing ideas need under $10k capital?"</div></div></div>
+        <div class="flow-step"><div class="flow-num">2</div><div class="flow-body"><div class="flow-title">Embed query</div><div class="flow-desc">Gemini Embedding 001 → 1536-dimensional vector</div></div></div>
+        <div class="flow-step"><div class="flow-num">3</div><div class="flow-body"><div class="flow-title">ChromaDB retrieval</div><div class="flow-desc">cosine_similarity → top-5 most relevant idea documents</div></div></div>
+        <div class="flow-step"><div class="flow-num">4</div><div class="flow-body"><div class="flow-title">LLM generation</div><div class="flow-desc">Gemini reads context docs + query → structured, cited answer</div></div></div>
+        <div class="flow-step"><div class="flow-num">5</div><div class="flow-body"><div class="flow-title">Store + render</div><div class="flow-desc">Answer saved to search_history. Frontend renders with clickable source links.</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 6. TESTING ══ -->
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-num">06 / Testing &amp; Quality Assurance</div>
+    <div class="sec-title">28 Automated Tests + Manual QA</div>
+    <div class="sec-desc">pytest with SQLite in-memory test database. AI calls mocked with unittest.mock. Manual testing across Chrome, Firefox, and mobile.</div>
+  </div>
+
+  <div class="test-grid" style="margin-bottom:20px;">
+    <div class="test-card">
+      <div class="test-card-head"><div class="test-card-name">Auth Tests</div><span class="test-tag test-pass">8 passing</span></div>
+      <div class="test-items">Register, login, /me, logout, duplicate email, wrong password, token refresh, admin role check</div>
+    </div>
+    <div class="test-card">
+      <div class="test-card-head"><div class="test-card-name">Ideas Tests</div><span class="test-tag test-pass">10 passing</span></div>
+      <div class="test-items">List, filter by category, filter by difficulty, pagination, detail, create (admin), update, delete, save, unsave</div>
+    </div>
+    <div class="test-card">
+      <div class="test-card-head"><div class="test-card-name">AI Generator</div><span class="test-tag test-pass">5 passing</span></div>
+      <div class="test-items">Generate idea (mocked Gemini), cache hit on repeat, rate limit 429, invalid JSON recovery, history endpoint</div>
+    </div>
+    <div class="test-card">
+      <div class="test-card-head"><div class="test-card-name">RAG Search</div><span class="test-tag test-pass">5 passing</span></div>
+      <div class="test-items">Search (mocked ChromaDB + Gemini), empty result handling, history endpoint, source citations, unauthenticated 401</div>
+    </div>
+    <div class="test-card">
+      <div class="test-card-head"><div class="test-card-name">Manual — Functional</div><span class="test-tag test-pass">&#10003; Done</span></div>
+      <div class="test-items">All 10 pages tested end-to-end as guest, user, and admin. All forms validated. All AI features verified live.</div>
+    </div>
+    <div class="test-card">
+      <div class="test-card-head"><div class="test-card-name">Manual — Security</div><span class="test-tag test-pass">&#10003; Done</span></div>
+      <div class="test-items">JWT token not in localStorage. Admin routes return 403 for non-admin. CORS blocks non-origin requests. Pydantic validates all inputs.</div>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>Security Measure</th><th>Implementation</th></tr></thead>
+      <tbody>
+        <tr><td>Password hashing</td><td>bcrypt 12 rounds (passlib + bcrypt==4.0.1 pinned)</td></tr>
+        <tr><td>Token storage</td><td>httpOnly cookies — no localStorage, no XSS token theft risk</td></tr>
+        <tr><td>Cross-domain cookies</td><td>SameSite=None; Secure=True for Vercel ↔ Render cross-origin</td></tr>
+        <tr><td>CORS</td><td>Restricted to FRONTEND_URL env var only; credentials: include</td></tr>
+        <tr><td>SQL Injection</td><td>SQLAlchemy ORM parameterised queries — no raw SQL</td></tr>
+        <tr><td>Input validation</td><td>Pydantic schemas on all request bodies; EmailStr on email fields</td></tr>
+        <tr><td>Rate limiting</td><td>In-memory per-user daily limit (10 AI generations/day)</td></tr>
+        <tr><td>Role-based access</td><td>require_admin dependency on all /admin/* routes; 403 for non-admin</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══ 7. DEPLOYMENT ══ -->
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-num">07 / Deployment</div>
+    <div class="sec-title">Production Stack &amp; Live URLs</div>
+    <div class="sec-desc">Backend on Render (Python 3.11), frontend on Vercel (Next.js), database on Neon PostgreSQL free tier. DB migrations run automatically on every deploy via start.sh.</div>
+  </div>
+
+  <div class="url-box" style="margin-bottom:20px;">
+    <div class="url-row">
+      <div class="url-icon">&#9889;</div>
+      <div>
+        <div class="url-label">Live Application (Vercel)</div>
+        <a href="https://idea-forge-neon.vercel.app" target="_blank" class="url-val">https://idea-forge-neon.vercel.app</a>
+      </div>
+    </div>
+    <div class="url-row">
+      <div class="url-icon">&#128640;</div>
+      <div>
+        <div class="url-label">Backend API (Render)</div>
+        <a href="https://ideaforge-blbt.onrender.com" target="_blank" class="url-val">https://ideaforge-blbt.onrender.com</a>
+      </div>
+    </div>
+    <div class="url-row">
+      <div class="url-icon">&#9881;</div>
+      <div>
+        <div class="url-label">Swagger API Docs</div>
+        <a href="https://ideaforge-blbt.onrender.com/docs" target="_blank" class="url-val">https://ideaforge-blbt.onrender.com/docs</a>
+      </div>
+    </div>
+    <div class="url-row">
+      <div class="url-icon">&#128196;</div>
+      <div>
+        <div class="url-label">GitHub Repository</div>
+        <a href="https://github.com/ramakrishnabalijepally-del/IdeaForge" target="_blank" class="url-val">https://github.com/ramakrishnabalijepally-del/IdeaForge</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-title">Frontend — Vercel</div>
+      <div class="card-desc">Next.js 14 App Router. NEXT_PUBLIC_API_URL set to Render backend. Automatic deploys on git push to main.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Backend — Render</div>
+      <div class="card-desc">Python 3.11 web service. start.sh runs alembic upgrade head + seed on every deploy. Auto-restart on crash.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Database — Neon</div>
+      <div class="card-desc">Serverless PostgreSQL. Connection pool via SQLAlchemy (size=5, max_overflow=10). Persistent across deploys.</div>
+    </div>
+  </div>
+
+  <!-- Credentials -->
+  <div style="font-size:12px; font-weight:700; color:var(--text-3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Test Credentials</div>
+  <div class="cred-grid">
+    <div class="cred-card">
+      <div class="cred-top"></div>
+      <div class="cred-body">
+        <div class="cred-role">&#128081; Admin Account</div>
+        <div class="cred-row"><span class="cred-label">Email</span><span class="cred-value">admin@ideaforge.app</span></div>
+        <div class="cred-row"><span class="cred-label">Password</span><span class="cred-value">IdeaForge#2026Admin</span></div>
+        <div class="cred-row"><span class="cred-label">Access</span><span class="cred-value">Full admin panel + CRUD</span></div>
+      </div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-top"></div>
+      <div class="cred-body">
+        <div class="cred-role">&#128100; Test User</div>
+        <div class="cred-row"><span class="cred-label">Email</span><span class="cred-value">user@ideaforge.app</span></div>
+        <div class="cred-row"><span class="cred-label">Password</span><span class="cred-value">IdeaForge#2026User</span></div>
+        <div class="cred-row"><span class="cred-label">Access</span><span class="cred-value">Save, generate, search</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TECH STACK ══ -->
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-num">Tech Stack</div>
+    <div class="sec-title">Full Technology List</div>
+  </div>
+  <div class="pills">
+    <div class="pill"><span class="pill-dot"></span>Next.js 14 (App Router)</div>
+    <div class="pill"><span class="pill-dot"></span>TypeScript</div>
+    <div class="pill"><span class="pill-dot"></span>Tailwind CSS</div>
+    <div class="pill"><span class="pill-dot"></span>FastAPI</div>
+    <div class="pill"><span class="pill-dot"></span>Python 3.11</div>
+    <div class="pill"><span class="pill-dot"></span>SQLAlchemy 2.0</div>
+    <div class="pill"><span class="pill-dot"></span>Alembic</div>
+    <div class="pill"><span class="pill-dot"></span>PostgreSQL (Neon)</div>
+    <div class="pill"><span class="pill-dot"></span>ChromaDB</div>
+    <div class="pill"><span class="pill-dot"></span>LangChain</div>
+    <div class="pill"><span class="pill-dot"></span>Gemini 3.1 Flash Lite</div>
+    <div class="pill"><span class="pill-dot"></span>Gemini Embedding 001</div>
+    <div class="pill"><span class="pill-dot"></span>scikit-learn TF-IDF</div>
+    <div class="pill"><span class="pill-dot"></span>JWT + httpOnly Cookies</div>
+    <div class="pill"><span class="pill-dot"></span>bcrypt</div>
+    <div class="pill"><span class="pill-dot"></span>Pydantic v2</div>
+    <div class="pill"><span class="pill-dot"></span>pytest</div>
+    <div class="pill"><span class="pill-dot"></span>Axios + Interceptors</div>
+    <div class="pill"><span class="pill-dot"></span>Vercel</div>
+    <div class="pill"><span class="pill-dot"></span>Render</div>
+    <div class="pill"><span class="pill-dot"></span>Claude Code</div>
+  </div>
+</div>
+
+<!-- ══ CANDIDATE NOTE ══ -->
+<div class="section" style="border-bottom:none;">
+  <div class="sec-header">
+    <div class="sec-num">Candidate Note</div>
+    <div class="sec-title">Availability &amp; Compensation</div>
+  </div>
+  <div class="candidate-box">
+    <p>
+      <strong>Availability:</strong> Available immediately — can join with zero notice period.<br /><br />
+      <strong>Previous Salary (CTC on paper):</strong> Please fill this in before sending — e.g. "₹X LPA CTC as per offer letter / payslip."<br /><br />
+      This application was built in full as a 2-day assessment using <strong>Claude Code</strong> as the AI development tool, with all architecture, prompt engineering, testing, and deployment decisions made and documented above.
+      The GitHub repository contains the complete source code, and the live application is fully operational at the Vercel URL above.
     </p>
-    <div class="cta-row">
-      <a href="https://idea-forge-neon.vercel.app" target="_blank" class="btn btn-primary">
-        &#9654;&nbsp; View Live App
-      </a>
-      <a href="https://github.com/ramakrishnabalijepally-del/IdeaForge" target="_blank" class="btn btn-secondary">
-        &#128196;&nbsp; GitHub Repository
-      </a>
-    </div>
   </div>
+</div>
 
-  <div class="divider"></div>
+</div><!-- /wrap -->
 
-  <div class="content">
-
-    <!-- LINKS -->
-    <div class="section">
-      <div class="section-label">Quick Links</div>
-      <div class="url-box">
-        <div class="url-row">
-          <div class="url-icon">&#127758;</div>
-          <div class="url-meta">
-            <div class="url-title">Live Application</div>
-            <a href="https://idea-forge-neon.vercel.app" target="_blank" class="url-link">
-              https://idea-forge-neon.vercel.app
-            </a>
-          </div>
-        </div>
-        <div class="url-row">
-          <div class="url-icon">&#128196;</div>
-          <div class="url-meta">
-            <div class="url-title">GitHub Repository</div>
-            <a href="https://github.com/ramakrishnabalijepally-del/IdeaForge" target="_blank" class="url-link">
-              https://github.com/ramakrishnabalijepally-del/IdeaForge
-            </a>
-          </div>
-        </div>
-        <div class="url-row">
-          <div class="url-icon">&#9881;</div>
-          <div class="url-meta">
-            <div class="url-title">Backend API</div>
-            <a href="https://ideaforge-blbt.onrender.com/docs" target="_blank" class="url-link">
-              https://ideaforge-blbt.onrender.com/docs
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FEATURES -->
-    <div class="section">
-      <div class="section-label">Core Features</div>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="feature-icon">&#128161;</div>
-          <div class="feature-name">Idea Explorer</div>
-          <div class="feature-desc">Browse &amp; filter curated startup ideas by category, feasibility, and capital range.</div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">&#129302;</div>
-          <div class="feature-name">AI Idea Generator</div>
-          <div class="feature-desc">Describe a problem, get a full structured business report with roadmap and revenue model.</div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">&#128269;</div>
-          <div class="feature-name">AI Search (RAG)</div>
-          <div class="feature-desc">Semantic vector search over the idea database using ChromaDB + Gemini embeddings.</div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">&#127775;</div>
-          <div class="feature-name">Saved Ideas</div>
-          <div class="feature-desc">Bookmark ideas and get personalised recommendations on your dashboard.</div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">&#128274;</div>
-          <div class="feature-name">JWT Auth</div>
-          <div class="feature-desc">Secure httpOnly cookie auth with refresh token rotation and role-based access control.</div>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">&#128200;</div>
-          <div class="feature-name">Admin Panel</div>
-          <div class="feature-desc">Analytics, user management, contact submissions and vector store reindex controls.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CREDENTIALS -->
-    <div class="section">
-      <div class="section-label">Test Credentials</div>
-      <div class="cred-grid">
-        <div class="cred-card">
-          <div class="cred-role">&#128081; Admin Account</div>
-          <div class="cred-row">
-            <span class="cred-label">Email</span>
-            <span class="cred-value">admin@ideaforge.app</span>
-          </div>
-          <div class="cred-row">
-            <span class="cred-label">Password</span>
-            <span class="cred-value">IdeaForge#2026Admin</span>
-          </div>
-        </div>
-        <div class="cred-card">
-          <div class="cred-role">&#128100; Test User</div>
-          <div class="cred-row">
-            <span class="cred-label">Email</span>
-            <span class="cred-value">user@ideaforge.app</span>
-          </div>
-          <div class="cred-row">
-            <span class="cred-label">Password</span>
-            <span class="cred-value">IdeaForge#2026User</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TECH STACK -->
-    <div class="section">
-      <div class="section-label">Tech Stack</div>
-      <div class="stack-grid">
-        <div class="stack-item"><span class="stack-dot"></span>Next.js 14</div>
-        <div class="stack-item"><span class="stack-dot"></span>TypeScript</div>
-        <div class="stack-item"><span class="stack-dot"></span>Tailwind CSS</div>
-        <div class="stack-item"><span class="stack-dot"></span>FastAPI</div>
-        <div class="stack-item"><span class="stack-dot"></span>Python 3.11</div>
-        <div class="stack-item"><span class="stack-dot"></span>SQLAlchemy</div>
-        <div class="stack-item"><span class="stack-dot"></span>PostgreSQL</div>
-        <div class="stack-item"><span class="stack-dot"></span>ChromaDB</div>
-        <div class="stack-item"><span class="stack-dot"></span>LangChain</div>
-        <div class="stack-item"><span class="stack-dot"></span>Gemini AI</div>
-        <div class="stack-item"><span class="stack-dot"></span>Alembic</div>
-        <div class="stack-item"><span class="stack-dot"></span>JWT Auth</div>
-        <div class="stack-item"><span class="stack-dot"></span>Vercel</div>
-        <div class="stack-item"><span class="stack-dot"></span>Render</div>
-        <div class="stack-item"><span class="stack-dot"></span>Neon DB</div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- FOOTER -->
-  <div class="footer">
-    Built by <strong>Rama Krishna</strong> &nbsp;·&nbsp; IdeaForge Assessment Submission 2026
-  </div>
+<div class="footer">
+  Built by <strong>Rama Krishna</strong> · IdeaForge Assessment Submission 2026 ·
+  <a href="https://idea-forge-neon.vercel.app" target="_blank">Live App</a> ·
+  <a href="https://github.com/ramakrishnabalijepally-del/IdeaForge" target="_blank">GitHub</a>
+</div>
 
 </body>
 </html>
