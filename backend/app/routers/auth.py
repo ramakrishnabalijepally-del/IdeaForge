@@ -61,8 +61,9 @@ def refresh(response: Response, refresh_token: Optional[str] = Cookie(default=No
 
 @router.post("/logout")
 def logout(response: Response):
-    response.delete_cookie("access_token", samesite="none", secure=True, httponly=True)
-    response.delete_cookie("refresh_token", samesite="none", secure=True, httponly=True)
+    # Explicitly expire cookies with same attributes they were set with
+    response.set_cookie(key="access_token", value="", max_age=0, httponly=True, samesite="none", secure=True)
+    response.set_cookie(key="refresh_token", value="", max_age=0, httponly=True, samesite="none", secure=True)
     return {"message": "Logged out"}
 
 

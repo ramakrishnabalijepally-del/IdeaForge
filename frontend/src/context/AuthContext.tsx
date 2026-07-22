@@ -35,7 +35,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const handleExpired = () => {
       setUser(null);
-      window.location.href = "/login";
+      const publicPaths = ["/login", "/signup"];
+      const isPublic = publicPaths.some((p) => window.location.pathname.startsWith(p));
+      if (!isPublic) {
+        window.location.href = "/login";
+      }
     };
     window.addEventListener("auth:expired", handleExpired);
     return () => window.removeEventListener("auth:expired", handleExpired);

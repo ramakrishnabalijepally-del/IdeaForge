@@ -17,7 +17,7 @@ function processQueue(error: unknown) {
 }
 
 // Endpoints that must never trigger the refresh-token retry loop
-const AUTH_ENDPOINTS = ["/auth/login", "/auth/register", "/auth/refresh"];
+const AUTH_ENDPOINTS = ["/auth/login", "/auth/register", "/auth/refresh", "/auth/me"];
 
 api.interceptors.response.use(
   (response) => response,
