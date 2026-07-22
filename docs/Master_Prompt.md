@@ -24,7 +24,7 @@ A platform (inspired by ideabrowser.com and 10000ideas.com) that helps aspiring 
 - Backend: FastAPI (Python 3.11) — separate service
 - Database: PostgreSQL (Neon/Supabase free tier), SQLAlchemy + Alembic
 - Auth: JWT (access + refresh), httpOnly cookies, bcrypt password hashing
-- AI Provider: Google AI Studio (Gemini) exclusively — `gemini-2.0-flash` for generation, `gemini-embedding-001` for embeddings, via `langchain-google-genai`
+- AI Provider: Google AI Studio (Gemini) exclusively — `gemini-3.1-flash-lite` for generation, `models/gemini-embedding-001` for embeddings, via `langchain-google-genai`
 - Vector Store: ChromaDB (persistent, local) for RAG over the idea database
 - Deployment: Frontend on Vercel, Backend on Render (free tier), monorepo with /frontend and /backend
 
