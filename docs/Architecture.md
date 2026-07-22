@@ -9,7 +9,7 @@ graph TB
     BE["Backend\nFastAPI (Python 3.11)\nRender"]
     DB["PostgreSQL\nNeon/Supabase"]
     VEC["ChromaDB\nPersistent Local\n(Render Disk)"]
-    GEMINI["Google Gemini API\n2.0 Flash + Embedding 001\nvia LangChain"]
+    GEMINI["Google Gemini API\n3.1 Flash Lite + Embedding 001\nvia LangChain"]
 
     User -->|HTTPS| FE
     FE -->|REST API (httpOnly cookies)| BE
@@ -229,7 +229,7 @@ sequenceDiagram
     participant BE as FastAPI
     participant EMB as Gemini Embedding
     participant VEC as ChromaDB
-    participant LLM as Gemini 2.0 Flash
+    participant LLM as Gemini 3.1 Flash Lite
     participant DB as PostgreSQL
 
     U->>FE: Types natural-language question
@@ -254,7 +254,7 @@ sequenceDiagram
     participant BE as FastAPI
     participant RATE as RateLimiter
     participant CACHE as PostgreSQL Cache
-    participant LLM as Gemini 2.0 Flash
+    participant LLM as Gemini 3.1 Flash Lite
     participant DB as PostgreSQL
 
     U->>FE: Enters niche/keyword, clicks Generate

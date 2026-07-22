@@ -17,7 +17,7 @@
 - Wrote all Tailwind CSS styling with custom dark theme
 - Generated all 7 documentation files
 
-### 2. Google Gemini 2.5 Flash (`gemini-2.5-flash`)
+### 2. Google Gemini 3.1 Flash Lite (`gemini-3.1-flash-lite`)
 **Provider**: Google AI Studio  
 **Client library**: `langchain-google-genai`
 

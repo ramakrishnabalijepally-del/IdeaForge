@@ -34,7 +34,7 @@ export default function AboutPage() {
             {[
               {
                 icon: Sparkles, color: "text-violet-400", bg: "bg-violet-500/10",
-                title: "AI Idea Generator (Gemini 2.0 Flash)",
+                title: "AI Idea Generator (Gemini 3.1 Flash Lite)",
                 desc: "Enter any niche or keyword → Gemini generates a structured idea report: problem, solution, target market, revenue model, feasibility score, competitive landscape, and 5-step roadmap.",
               },
               {
@@ -77,7 +77,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {[
               "Next.js 14 (App Router)", "FastAPI (Python 3.11)", "PostgreSQL",
-              "ChromaDB (Vector Store)", "Gemini 2.0 Flash", "Gemini Embedding 001",
+              "ChromaDB (Vector Store)", "Gemini 3.1 Flash Lite", "Gemini Embedding 001",
               "LangChain", "SQLAlchemy + Alembic", "JWT Auth (httpOnly cookies)",
             ].map((t) => (
               <div key={t} className="bg-surface-DEFAULT border border-surface-border rounded-lg px-3 py-2 text-sm text-text-secondary text-center">

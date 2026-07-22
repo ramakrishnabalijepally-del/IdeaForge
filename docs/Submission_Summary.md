@@ -4,7 +4,7 @@
 
 **IdeaForge** is a production-ready, full-stack AI-powered startup and manufacturing idea explorer. It delivers three distinct AI capabilities on top of a curated idea database:
 
-1. **AI Idea Generator** — Gemini 2.0 Flash generates a fully structured business idea report (problem, solution, market, revenue model, feasibility score 1-10, competitive landscape, 5-step roadmap) from any niche/keyword input
+1. **AI Idea Generator** — Gemini 3.1 Flash Lite generates a fully structured business idea report (problem, solution, market, revenue model, feasibility score 1-10, competitive landscape, 5-step roadmap) from any niche/keyword input
 2. **RAG-Powered AI Search** — ChromaDB vector retrieval + Gemini answers natural-language questions about the idea database with citations to source ideas
 3. **TF-IDF Recommendation Engine** — Suggests related ideas based on cosine similarity to the user's saved-idea profile
 
@@ -42,7 +42,7 @@ The platform includes 10 frontend pages, a 9-router FastAPI backend, PostgreSQL 
 | Backend | FastAPI (Python 3.11), SQLAlchemy, Alembic |
 | Database | PostgreSQL (Neon/Supabase) |
 | Vector Store | ChromaDB (persistent local) |
-| AI Models | Gemini 2.0 Flash + Gemini Embedding 001 |
+| AI Models | Gemini 3.1 Flash Lite + Gemini Embedding 001 |
 | AI Framework | LangChain (`langchain-google-genai`) |
 | Auth | JWT (httpOnly cookies), bcrypt, RBAC |
 | Recommendation | scikit-learn TF-IDF cosine similarity |
@@ -55,7 +55,7 @@ The platform includes 10 frontend pages, a 9-router FastAPI backend, PostgreSQL 
 | Tool | Role |
 |------|------|
 | **Claude Code** | Built the entire application (backend, frontend, tests, docs) |
-| **Gemini 2.0 Flash** | AI Idea Generator + RAG answer generation |
+| **Gemini 3.1 Flash Lite** | AI Idea Generator + RAG answer generation |
 | **Gemini Embedding 001** | Document + query embeddings for ChromaDB |
 | **LangChain** | Client library for Gemini LLM + embeddings |
 | **ChromaDB** | Vector store for RAG retrieval |

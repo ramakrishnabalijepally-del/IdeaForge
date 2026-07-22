@@ -7,7 +7,7 @@ A full-stack platform that helps aspiring entrepreneurs and manufacturers discov
 ## Features
 
 - **Explore Ideas** — 25+ curated startup and manufacturing ideas across 8 categories, with filters by category, difficulty, feasibility score, and keyword search
-- **AI Idea Generator** — Input any niche/keyword → Gemini 2.5 Flash generates a structured idea report (problem, solution, market, revenue model, feasibility score, competitive landscape, 5-step roadmap)
+- **AI Idea Generator** — Input any niche/keyword → Gemini 3.1 Flash Lite generates a structured idea report (problem, solution, market, revenue model, feasibility score, competitive landscape, 5-step roadmap)
 - **RAG AI Search** — Natural-language questions answered by ChromaDB retrieval + Gemini generation, with citations to source ideas
 - **Recommendation Engine** — TF-IDF cosine similarity recommends related ideas based on your saves
 - **Idea of the Day** — Admin-curated featured idea on the homepage
@@ -21,7 +21,7 @@ A full-stack platform that helps aspiring entrepreneurs and manufacturers discov
 
 | Tool | Model | Role | Why |
 |------|-------|------|-----|
-| Gemini 2.5 Flash | `gemini-2.5-flash` | AI Idea Generator, RAG answer generation | Fast, cost-effective LLM for structured generation and grounded Q&A |
+| Gemini 3.1 Flash Lite | `gemini-3.1-flash-lite` | AI Idea Generator, RAG answer generation | Fast, cost-effective LLM for structured generation and grounded Q&A |
 | Gemini Embedding | `models/gemini-embedding-001` | Document + query embeddings for RAG | Native embedding model optimized for semantic similarity |
 | LangChain | `langchain-google-genai` | LLM + embedding client | Clean abstraction for Gemini API |
 | ChromaDB | Persistent local | Vector store for RAG retrieval | Simple, file-based, zero-infra for free tier deployment |
@@ -40,7 +40,7 @@ A full-stack platform that helps aspiring entrepreneurs and manufacturers discov
 | Database | PostgreSQL (Neon/Supabase free tier) |
 | Vector Store | ChromaDB (persistent local) |
 | Auth | JWT (httpOnly cookies), bcrypt |
-| AI | Google Gemini 2.5 Flash + Embedding via LangChain |
+| AI | Google Gemini 3.1 Flash Lite + Embedding 001 via LangChain |
 
 ---
 

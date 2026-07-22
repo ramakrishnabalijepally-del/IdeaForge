@@ -108,7 +108,7 @@ Neither platform allows a user to say "I want an idea in sustainable packaging w
 
 | AI Technique | Selected? | Justification |
 |-------------|-----------|---------------|
-| **LLM (Gemini 2.0 Flash)** | ✅ Yes | Core value-add: generates structured idea reports from free-text prompts. Turns passive browsing into active creation. |
+| **LLM (Gemini 3.1 Flash Lite)** | ✅ Yes | Core value-add: generates structured idea reports from free-text prompts. Turns passive browsing into active creation. |
 | **RAG (ChromaDB + Gemini Embeddings)** | ✅ Yes | Idea database is a text knowledge base perfectly suited to retrieval-augmented Q&A. Grounded, cited answers are more trustworthy than pure generation. |
 | **ML Recommendation (TF-IDF cosine similarity)** | ✅ Yes | Lightweight, explainable recommendation based on user's saved ideas. No ML training pipeline needed; appropriate for this dataset size. |
 | **Computer Vision / OCR** | ❌ No | Domain is purely textual/structured data. No images, PDFs, or visual inputs exist in the user workflow. Would add complexity without user value. |
