@@ -17,8 +17,8 @@ settings = get_settings()
 
 COOKIE_OPTS = {
     "httponly": True,
-    "samesite": "lax",
-    "secure": settings.ENVIRONMENT == "production",
+    "samesite": "none",
+    "secure": True,
 }
 
 
