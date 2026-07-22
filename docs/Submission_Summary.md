@@ -16,12 +16,11 @@ The platform includes 10 frontend pages, a 9-router FastAPI backend, PostgreSQL 
 
 | Resource | URL |
 |----------|-----|
-| Live Frontend | `[Deploy to Vercel — placeholder]` |
-| Live Backend API | `[Deploy to Render — placeholder]` |
-| API Docs (Swagger) | `{BACKEND_URL}/api/docs` |
-| GitHub Repository | `[Add GitHub URL after init]` |
-
-> **Note**: Deployment commands are fully documented in README.md. The application runs completely locally with `uvicorn + npm run dev`.
+| Live Frontend | https://idea-forge-neon.vercel.app |
+| Live Backend API | https://ideaforge-blbt.onrender.com |
+| API Docs (Swagger) | https://ideaforge-blbt.onrender.com/api/docs |
+| GitHub Repository | https://github.com/ramakrishnabalijepally-del/IdeaForge |
+| Submission Page | https://ramakrishnabalijepally-del.github.io/IdeaForge/submission.html |
 
 ---
 
